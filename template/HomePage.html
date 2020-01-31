@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Visualizer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- bootstrap file  -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <!-- bootstrap files ended -->
+
+
+
+</head>
+<body>
+
+<div class="text-center" style="font-color:white;background-color: rgba(0,0,0,0.8); padding: 15px;">
+  <span style="color: white; font-size: 30px;">Visualizer</span>
+</div>
+
+<section>
+  <div class="container-fluid" style="background-color: rgba(255,255,255,0); text-align: center;">
+  <div class="row">
+
+    <div class="col-sm-3">
+    </div>
+
+    <div class="col-sm-6">
+    <!-- Frame -->
+
+        <form>
+          <div class="form-group" style="text-align: center; align-content: center;">
+            <label for="exampleFormControlFile1">Example file input</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+          </div>
+
+          <button class="btn btn-success" id='script' name="scriptbutton" value="Visualizer.html" onclick="/Visualizer.html" >Search</button>
+        </form>
+
+    </div>
+
+    <div class="col-sm-3">
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!--<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <script type=text/javascript>
+        function runPython(){
+            $.ajax({
+              url: "app_prototype_one.py",
+             context: document.body
+            }).done(function() {
+             alert('finished python script');;
+            });
+        }
+    </script>-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+        $(function() {
+          $('a#test').bind('click', function() {
+            $.getJSON('/background_process_test',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+</script>
+//button
+<div class='container'>
+    <h3>Test</h3>
+        <form>
+            <a href=# id=test><button class='btn btn-default'>Test</button></a>
+        </form>
+
+</div>
+</body>
+</html>

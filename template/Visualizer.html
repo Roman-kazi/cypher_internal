@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Visualizer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- bootstrap file  -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <!-- bootstrap files ended -->
+
+  <!-- neovis.js files -->
+  <script type="text/javascript" src="js/neovis.js"></script>
+  <script type="text/javascript" src="https://cdn.neo4jlabs.com/neovis.js/v1.2.1/neovis.js"></script>
+  <script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
+  <script  src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+  <!-- neovis.js files ended -->
+
+  <!-- display style -->
+  <style type="text/css">
+  html, body {
+           font-size: 16px;
+       }
+       #viz {
+           max-width: 100%;
+           height: 600px;
+           font: 22px arial;
+           display: inline-block;
+           float: left;
+       }
+/*        #Buttons {
+            padding-left: 10px;
+            display: inline-block;
+            float: left;
+        }*/
+  </style>
+  <!-- style setting ended -->
+
+  <!-- neovis script -->
+  <script>
+  // define config car
+        // instantiate nodevis object
+        // draw
+        var viz;
+
+        function draw() {
+            var config = {
+                container_id: "viz",
+                server_url: "bolt://localhost:7687",
+                server_user: "neo4j",
+                server_password: "root",
+                "arrows": true,
+                labels: {
+                   "mobile_number": {
+                        "caption": "number",
+                        "size": "pagerank",
+                        "community": "community"
+                        //"sizeCypher": "MATCH (n) WHERE id(n) = {id} MATCH (n)-[r]-() RETURN sum(r.weight) AS c"
+                    }
+                },
+                relationships: {
+                    "ANSWERED": {
+                        "thickness": "weight",
+                        "caption": true
+                    },
+                    "DENINED": {
+                        "thickness": "weight",
+                        "caption": true
+                    }
+                },
+                initial_cypher: "MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2"
+            };
+
+            viz = new NeoVis.default(config);
+            viz.render();
+            console.log(viz);
+        }
+  </script>
+  <!-- neovis script ended -->
+
+</head>
+<body onload="draw()">
+
+<div class="text-center" style="font-color:white;background-color: rgba(0,0,0,0.8);">
+  <span style="color: white;font-size: 30px;">Visualizer</span>
+</div>
+
+<div class="container-fluid ">
+  <div class="row">
+
+    <div class="col-sm-8" id="viz" style="background-color: rgba(1,1,1,0);">
+    <!-- Frame -->
+          </div>
+    <div class="col-sm-4 text-white"  >
+      <!-- Button Functions -->
+      <table class="table table-borderless table-dark">
+        <tbody>
+        <tr>
+          <td>Calltype</td>
+          <td>
+            <select id="calls">
+              <option value="default">All</option>
+              <option value="DENINED">Miss Calls</option>
+              <option value="ANSWERED">Answer Calls</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Response</td>
+          <td>
+            <select id="type">
+              <option value="default">All</option>
+              <option value="SMS">SMS</option>
+              <option value="VOICE">Voice</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Search number</td>
+          <td>
+            <input type="string" id="mob_no">
+            <button class="btn btn-success" id="mob_search" >Search</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <h3><b>Search Call Details</b></h3>
+
+      <table class="table table-borderless">
+
+        <tbody>
+          <tr>
+            <td>Start Time</td>
+            <td><input type="datetime-local" id="start_time" min="1980-01-01T00:00" max="2020-01-14T00:00"></td>
+          </tr>
+          <tr>
+            <td>End Time</td>
+            <td><input type="datetime-local" id="end_time" min="1980-01-01T00:00" max="2018-01-14T00:00"></td>
+          </tr>
+          <tr>
+            <td><button class="btn btn-success" id="time_search">Search</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+
+            <h3><b>Manual Cypher query</b></h3>
+            <textarea rows="2" cols="35" id="cypher"></textarea><br>
+            <br>
+        <input class="btn btn-success" type="submit" value="Submit" id="reload">
+        <input class="btn btn-success" type="submit" value="Stabilize" id="stabilize">
+
+      </div>
+  </div>
+</div>
+
+</body>
+<script>
+    vis.on('click', 'node', function(evt){
+      console.log( 'clicked ' + this.id() );
+    });
+    //fire manual query
+    $("#reload").click(function() {
+
+        var cypher = $("#cypher").val();
+
+        if (cypher.length > 3) {
+            viz.renderWithCypher(cypher);
+        } else {
+            console.log("reload");
+            viz.reload();
+        }
+
+    });
+
+    //stablize the graph
+    $("#stabilize").click(function() {
+        viz.stabilize();
+    })
+
+    //search a mobile number
+    $("#mob_search").click(function() {
+        var no = $("#mob_no").val();
+        var cypher= 'match (n)-[r]-(b) where n.number="'+no+'" return n,r,b';
+            viz.renderWithCypher(cypher);
+
+        console.log("searching number "+no);
+    });
+
+    //search a number in time period
+    $("#time_search").click(function() {
+        var st = $("#start_time").val();
+        var et = $("#end_time").val();
+
+        /*if (cypher.length > 3) {
+            viz.renderWithCypher(cypher);
+        } else {
+            console.log("reload");
+            viz.reload();
+        }*/
+        console.log("searching number between "+st+" and "+et);
+    });
+
+         $("#calls").on("change", function(){
+                var selectedVal = $(this).find(':selected').val();
+             if(selectedVal== 'default'){
+                 var cypher= 'MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2';
+             }
+             else{
+                var cypher= 'MATCH p=()-[r:'+selectedVal+']->() RETURN p';
+             }
+                viz.renderWithCypher(cypher);
+             console.log(""+ selectedVal);
+
+         });
+
+         $("#type").on("change", function(){
+                var selectedVal = $(this).find(':selected').val();
+             if(selectedVal== 'default'){
+                 var cypher= 'MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2';
+             }
+             else{
+                var cypher= 'MATCH (n)-[r]-(a) WHERE r.typeb="'+selectedVal+'" RETURN n,r,a';
+             }
+                viz.renderWithCypher(cypher);
+             console.log(""+ selectedVal);
+         });
+
+</script>
+
+</html>
