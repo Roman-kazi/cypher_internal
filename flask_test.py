@@ -17,6 +17,7 @@ def index():
 def background_process_test():
     root = tkinter.Tk()
     root.withdraw()
+    root.attributes("-topmost", True)
     file_path = filedialog.askopenfilename()
     neo_4j_demo.backend(file_path)
 
