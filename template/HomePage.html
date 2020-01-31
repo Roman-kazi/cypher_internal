@@ -38,8 +38,9 @@
           <br>
           
           <a href=# id=test><button class='btn btn-success'>Select File</button></a>
-          <a href=" YE PATH CHANGE KARNA HAI BAS"><button class='btn btn-success'>Generate Graph</button></a>
-        
+          <!--<a href=" YE PATH CHANGE KARNA HAI BAS"><button class='btn btn-success'>Generate Graph</button></a>-->
+            <input class ='btn btn-success' id="btntest" type="button" value="Generate Graph"
+       onclick="window.location.href = '/visualizer'" />
         </form>
 
     </div>
@@ -60,10 +61,13 @@
             $.getJSON('/background_process_test',
                 function(data) {
               //do nothing
+
             });
+
             return false;
           });
         });
+
 </script>
 
 <!-- Main Button End-->

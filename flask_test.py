@@ -1,6 +1,6 @@
 import tkinter
 import neo_4j_demo
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request, redirect, url_for
 #import visualization_backedend
 from tkinter import filedialog
 
@@ -19,7 +19,8 @@ def background_process_test():
     root.withdraw()
     file_path = filedialog.askopenfilename()
     neo_4j_demo.backend(file_path)
-    return ('nothing')
+
+    return redirect('nothing')
 
 @app.route('/visualizer')
 def visualizer():
