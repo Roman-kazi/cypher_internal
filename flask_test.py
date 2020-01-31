@@ -1,8 +1,8 @@
 import tkinter
 import neo_4j_demo
 from flask import Flask, render_template,request, redirect, url_for
-#import visualization_backedend
-from tkinter import filedialog
+
+import easygui
 
 app = Flask(__name__,template_folder='template')
 
@@ -13,15 +13,19 @@ def index():
     return render_template('HomePage.html')
 
 #background process happening without any refreshing
+
 @app.route('/background_process_test')
 def background_process_test():
-    root = tkinter.Tk()
-    root.withdraw()
-    root.attributes("-topmost", True)
-    file_path = filedialog.askopenfilename()
+    file_selector()
+    return ('nothing')
+
+def file_selector():
+    file_path = easygui.fileopenbox()
     neo_4j_demo.backend(file_path)
 
-    return redirect('nothing')
+    return 0
+
+
 
 @app.route('/visualizer')
 def visualizer():
