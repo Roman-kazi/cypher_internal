@@ -21,6 +21,11 @@ def background_process_test():
     neo_4j_demo.backend(file_path)
     return ('nothing')
 
+@app.route('/visualizer')
+def visualizer():
+    return render_template('Visualizer.html')
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
