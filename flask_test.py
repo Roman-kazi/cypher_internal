@@ -1,6 +1,6 @@
-import tkinter
+import subprocess
 import neo_4j_demo
-from flask import Flask, render_template,request, redirect, url_for
+from flask import Flask, render_template
 
 import easygui
 
@@ -16,10 +16,11 @@ def index():
 
 @app.route('/background_process_test')
 def background_process_test():
-    file_selector()
+    subprocess(file_selector())
     return ('nothing')
 
 def file_selector():
+
     file_path = easygui.fileopenbox()
     neo_4j_demo.backend(file_path)
 
