@@ -19,7 +19,7 @@ def background_process_test():
     root.withdraw()
     file_path = filedialog.askopenfilename()
     neo_4j_demo.backend(file_path)
-    return render_template('nothing')
+    return ('nothing')
 
 
 if __name__ == "__main__":
