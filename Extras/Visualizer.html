@@ -27,8 +27,9 @@
        }
        #viz {
            max-width: 100%;
-           height: 600px;
+           height: 550px;
            font: 22px arial;
+           border: 1px solid lightgray;
            display: inline-block;
            float: left;
        }
@@ -85,8 +86,8 @@
 </head>
 <body onload="draw()">
 
-<div class="text-center" style="font-color:white;background-color: rgba(0,0,0,0.8);">
-  <span style="color: white;font-size: 30px;">Visualizer</span>
+<div class="text-center" style="font-color:white;background-color: rgba(0,0,0,0.9); padding: 15px;">
+  <span style="color: white; font-size: 30px;">Visualizer</span>
 </div>
 
 <div class="container-fluid ">
@@ -159,12 +160,8 @@
   </div>
 </div>
 
-</body>
-<script>
-    vis.on('click', 'node', function(evt){
-      console.log( 'clicked ' + this.id() );
-    });
-    //fire manual query
+</body>    <script>
+    //fire manual query    
     $("#reload").click(function() {
 
         var cypher = $("#cypher").val();
@@ -177,26 +174,26 @@
         }
 
     });
-
+    
     //stablize the graph
     $("#stabilize").click(function() {
         viz.stabilize();
     })
-
+        
     //search a mobile number
     $("#mob_search").click(function() {
         var no = $("#mob_no").val();
         var cypher= 'match (n)-[r]-(b) where n.number="'+no+'" return n,r,b';
             viz.renderWithCypher(cypher);
-
+        
         console.log("searching number "+no);
     });
-
-    //search a number in time period
+    
+    //search a number in time period 
     $("#time_search").click(function() {
         var st = $("#start_time").val();
         var et = $("#end_time").val();
-
+        
         /*if (cypher.length > 3) {
             viz.renderWithCypher(cypher);
         } else {
@@ -212,25 +209,26 @@
                  var cypher= 'MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2';
              }
              else{
-                var cypher= 'MATCH p=()-[r:'+selectedVal+']->() RETURN p';
+                var cypher= 'MATCH p=()-[r:'+selectedVal+']->() RETURN p'; 
              }
                 viz.renderWithCypher(cypher);
-             console.log(""+ selectedVal);
-
+             console.log(""+ selectedVal); 
+             
          });
-
+        
          $("#type").on("change", function(){
                 var selectedVal = $(this).find(':selected').val();
              if(selectedVal== 'default'){
                  var cypher= 'MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2';
              }
              else{
-                var cypher= 'MATCH (n)-[r]-(a) WHERE r.typeb="'+selectedVal+'" RETURN n,r,a';
+                var cypher= 'MATCH (n)-[r]-(a) WHERE r.typeb="'+selectedVal+'" RETURN n,r,a'; 
              }
                 viz.renderWithCypher(cypher);
-             console.log(""+ selectedVal);
+             console.log(""+ selectedVal); 
          });
 
 </script>
+
 
 </html>
