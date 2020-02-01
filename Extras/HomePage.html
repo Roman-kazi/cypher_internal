@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Visualizer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- bootstrap file  -->
+  <link rel="stylesheet" href="{{url_for('static',filename="css/bootstrap.min.css")}}">
+    <script src="{{url_for('static',filename="js/jquery.js")}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="{{url_for('static',filename="js/bootstrap.min.js")}}"></script>
+  <!-- bootstrap files ended -->
+
+</head>
+<body>
+
+<div class="text-center" style="font-color:white;background-color: rgba(0,0,0,0.8); padding: 15px;">
+  <span style="color: white; font-size: 30px;">Visualizer</span>
+</div>
+
+<section>
+  <div class="container-fluid" style="background-color: rgba(255,255,255,0); text-align: center;">
+  <div class="row">
+
+    <div class="col-sm-3">
+    </div>
+
+    <div class="col-sm-6">
+    <!-- Frame -->
+
+        <form>
+<!--          <div class="form-group" style="text-align: center; align-content: center;">-->
+<!--            <label for="exampleFormControlFile1">Example file input</label>-->
+<!--            <input type="file" class="form-control-file" id="exampleFormControlFile1">-->
+<!--          </div>-->
+
+          <br>
+          <br>
+          
+          <a href=# id=test><button class='btn btn-success'>Select File</button></a>
+          <!--<a href=" YE PATH CHANGE KARNA HAI BAS"><button class='btn btn-success'>Generate Graph</button></a>-->
+            <input class ='btn btn-success' id="btntest" type="button" value="Generate Graph"
+       onclick="window.location.href = '/visualizer'" />
+        </form>
+
+    </div>
+
+    <div class="col-sm-3">
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- Main Button Start -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+        $(function() {
+          $('a#test').bind('click', function() {
+            $.getJSON('/background_process_test',
+                function(data) {
+              //do nothing
+
+            });
+
+            return false;
+          });
+        });
+
+</script>
+
+<!-- Main Button End-->
+        
+
+</div>
+</body>
+</html>
