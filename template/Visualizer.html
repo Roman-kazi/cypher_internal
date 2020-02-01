@@ -68,7 +68,7 @@
                         "thickness": "weight",
                         "caption": true
                     },
-                    "DENINED": {
+                    "DENIED": {
                         "thickness": "weight",
                         "caption": true
                     }
@@ -105,7 +105,7 @@
           <td>
             <select id="calls">
               <option value="default">All</option>
-              <option value="DENINED">Miss Calls</option>
+              <option value="DENIED">Miss Calls</option>
               <option value="ANSWERED">Answer Calls</option>
             </select>
           </td>
@@ -155,15 +155,16 @@
             <br>
         <input class="btn btn-success" type="submit" value="Submit" id="reload">
         <input class="btn btn-success" type="submit" value="Stabilize" id="stabilize">
+       <input class="btn btn-success" type="submit" value="Delete" id="delete">
 
       </div>
   </div>
 </div>
 
-</body>    <script>
+</body>
+  <script>
     //fire manual query    
     $("#reload").click(function() {
-
         var cypher = $("#cypher").val();
 
         if (cypher.length > 3) {
@@ -179,7 +180,13 @@
     $("#stabilize").click(function() {
         viz.stabilize();
     })
-        
+
+    //for delete all nodes
+    $("#delete").click(function() {
+      var cypher= 'match(n) detach delete(n)';
+      viz.renderWithCypher(cypher);
+    })
+
     //search a mobile number
     $("#mob_search").click(function() {
         var no = $("#mob_no").val();
@@ -222,13 +229,11 @@
                  var cypher= 'MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2';
              }
              else{
-                var cypher= 'MATCH (n)-[r]-(a) WHERE r.typeb="'+selectedVal+'" RETURN n,r,a'; 
+                var cypher= 'MATCH (n)-[r]-(a) WHERE r.type="'+selectedVal+'" RETURN n,r,a';
              }
                 viz.renderWithCypher(cypher);
              console.log(""+ selectedVal); 
          });
 
 </script>
-
-
 </html>

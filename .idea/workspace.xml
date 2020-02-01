@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="be657aba-96d2-43fa-8e66-dde41e646253" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/HomePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/HomePage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicHTML/Bloom3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/BasicHTML/Bloom3.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicHTML/bloom2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/BasicHTML/bloom2.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/Visualizer.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/Visualizer.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flask_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="-59">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -26,24 +27,22 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Extras/Visualizer.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/template/Visualizer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="114">
+              <caret line="185" column="44" selection-start-line="185" selection-start-column="44" selection-end-line="185" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/template/HomePage.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/neo_4j_demo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="893">
-              <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
+            <state relative-caret-position="-491">
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,9 +55,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/template/Visualizer.html" />
         <option value="$PROJECT_DIR$/template/HomePage.html" />
         <option value="$PROJECT_DIR$/flask_test.py" />
+        <option value="$PROJECT_DIR$/template/Visualizer.html" />
       </list>
     </option>
   </component>
@@ -80,6 +79,11 @@
             <path>
               <item name="cypher_internal" type="b2602c69:ProjectViewProjectNode" />
               <item name="cypher_internal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cypher_internal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cypher_internal" type="462c0819:PsiDirectoryNode" />
+              <item name="BasicHTML" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cypher_internal" type="b2602c69:ProjectViewProjectNode" />
@@ -164,23 +168,23 @@
       <workItem from="1580476654146" duration="762000" />
       <workItem from="1580481626354" duration="9623000" />
       <workItem from="1580552980585" duration="827000" />
-      <workItem from="1580554089134" duration="227000" />
+      <workItem from="1580554089134" duration="4218000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11439000" />
+    <option name="totallyTimeSpent" value="15430000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1366" height="743" extended-state="6" />
+    <frame x="0" y="25" width="1360" height="743" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15757576" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15829529" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2984375" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2984375" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -236,23 +240,13 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/cypher_flask$flask_test.coverage" NAME="flask_test Coverage Results" MODIFIED="1580477279721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/cypher_internal$flask_test.coverage" NAME="flask_test Coverage Results" MODIFIED="1580554325796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/cypher_internal$flask_test.coverage" NAME="flask_test Coverage Results" MODIFIED="1580557745807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/template/Visualizer.html">
+    <entry file="file://$PROJECT_DIR$/template/HomePage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="893">
+          <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -267,10 +261,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/HomePage.html">
+    <entry file="file://$PROJECT_DIR$/BasicHTML/bloom2.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flask_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="893">
-          <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
+        <state relative-caret-position="-59">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/neo_4j_demo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-491">
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/Visualizer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="185" column="44" selection-start-line="185" selection-start-column="44" selection-end-line="185" selection-end-column="44" />
         </state>
       </provider>
     </entry>
