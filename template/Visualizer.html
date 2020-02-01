@@ -96,11 +96,32 @@
     <div class="col-sm-8" id="viz" style="background-color: rgba(1,1,1,0);">
     <!-- Frame -->
           </div>
-    <div class="col-sm-4 text-white"  >
+    
+    <div class="col-sm-4 text-white"  style="margin-top: 5px">
       <!-- Button Functions -->
-      <table class="table table-borderless table-dark">
+      <h3 style="margin-top: 0px;"><b>Select File</b></h3>
+        <button class='btn btn-success' id="test" onclick="enableGenerate()">Browse File to select</button>
+        <button class ='btn btn-success' id="btntest" type="button"  onclick="window.location.href = '/visualizer'" disabled>Generate Graph</button>
+        <hr style="margin-top: 5px; margin-bottom: 5px;">
+
+        <h3 style="margin-top: 5px"><b>Filters</b></h3>
+      <!-- check boxes -->
+<div class="form-check" style="margin-top: 10px">
+        <input type="checkbox" class="form-check-input" id="SMS">
+    <label class="form-check-label" for="SMS">SMS</label>
+        <input type="checkbox" class="form-check-input" id="voice">
+    <label class="form-check-label" for="voice">Calls</label>
+        <input type="checkbox" class="form-check-input" id="missed_call">
+    <label class="form-check-label" for="missed_call">Missed</label>
+        <input type="checkbox" class="form-check-input" id="answered_call">
+    <label class="form-check-label" for="answered_call">Answered</label>
+    <button class="btn btn-success" id="execute_queries" >Apply Filters</button>
+    
+</div>
+
+      <table style="margin-top: 5px; margin-bottom: 5px;" class="table table-borderless table-dark">
         <tbody>
-        <tr>
+<!--         <tr>
           <td>Calltype</td>
           <td>
             <select id="calls">
@@ -109,8 +130,10 @@
               <option value="ANSWERED">Answer Calls</option>
             </select>
           </td>
-        </tr>
-        <tr>
+        </tr> -->
+
+
+<!--         <tr>
           <td>Response</td>
           <td>
             <select id="type">
@@ -119,7 +142,9 @@
               <option value="VOICE">Voice</option>
             </select>
           </td>
-        </tr>
+        </tr> -->
+
+
         <tr>
           <td>Search number</td>
           <td>
@@ -130,9 +155,9 @@
         </tbody>
       </table>
 
-      <h3><b>Search Call Details</b></h3>
+      <h3 style="margin-top: 0px; margin-bottom: 5px;"><b>Search Call Details</b></h3>
 
-      <table class="table table-borderless">
+      <table style="margin-top: 0px; margin-bottom: 5px;" class="table table-borderless">
 
         <tbody>
           <tr>
@@ -150,13 +175,16 @@
       </table>
 
 
-            <h3><b>Manual Cypher query</b></h3>
-            <textarea rows="2" cols="35" id="cypher"></textarea><br>
+            <h3 style="margin-top: 0px; margin-bottom: 5px;"><b>Manual Cypher query</b></h3>
+            <textarea rows="1" cols="50" id="cypher"></textarea><br>
             <br>
         <input class="btn btn-success" type="submit" value="Submit" id="reload">
         <input class="btn btn-success" type="submit" value="Stabilize" id="stabilize">
+        <input class="btn btn-success" type="submit" value="Delete" id="delete">
+
 
       </div>
+
   </div>
 </div>
 
@@ -178,6 +206,11 @@
     //stablize the graph
     $("#stabilize").click(function() {
         viz.stabilize();
+    })
+
+    //delete the graph
+    $("#delete").click(function() {
+        viz.renderWithCypher("match(n) detach delete(n)");
     })
         
     //search a mobile number
@@ -228,6 +261,32 @@
              console.log(""+ selectedVal); 
          });
 
+</script>
+
+
+<!-- Main Button Start -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+        $(function() {
+          $('#test').bind('click', function() {
+            $.getJSON('/background_process_test',
+                function() {
+              //do nothing
+            });
+
+            return false;
+          });
+        });
+
+</script>
+
+<!-- Main Button End-->
+
+<script>
+function enableGenerate() {
+  document.getElementById("btntest").disabled = false;
+}
 </script>
 
 
