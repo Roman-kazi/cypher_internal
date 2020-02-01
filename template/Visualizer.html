@@ -68,7 +68,7 @@
                         "thickness": "weight",
                         "caption": true
                     },
-                    "DENINED": {
+                    "DENIED": {
                         "thickness": "weight",
                         "caption": true
                     }
@@ -126,7 +126,7 @@
           <td>
             <select id="calls">
               <option value="default">All</option>
-              <option value="DENINED">Miss Calls</option>
+              <option value="DENIED">Miss Calls</option>
               <option value="ANSWERED">Answer Calls</option>
             </select>
           </td>
@@ -180,18 +180,22 @@
             <br>
         <input class="btn btn-success" type="submit" value="Submit" id="reload">
         <input class="btn btn-success" type="submit" value="Stabilize" id="stabilize">
+<<<<<<< HEAD
         <input class="btn btn-success" type="submit" value="Delete" id="delete">
 
+=======
+       <input class="btn btn-success" type="submit" value="Delete" id="delete">
+>>>>>>> 903274e0f60600dc076a489cd51c2c9156735282
 
       </div>
 
   </div>
 </div>
 
-</body>    <script>
+</body>
+  <script>
     //fire manual query    
     $("#reload").click(function() {
-
         var cypher = $("#cypher").val();
 
         if (cypher.length > 3) {
@@ -208,11 +212,20 @@
         viz.stabilize();
     })
 
+<<<<<<< HEAD
     //delete the graph
     $("#delete").click(function() {
         viz.renderWithCypher("match(n) detach delete(n)");
     })
         
+=======
+    //for delete all nodes
+    $("#delete").click(function() {
+      var cypher= 'match(n) detach delete(n)';
+      viz.renderWithCypher(cypher);
+    })
+
+>>>>>>> 903274e0f60600dc076a489cd51c2c9156735282
     //search a mobile number
     $("#mob_search").click(function() {
         var no = $("#mob_no").val();
@@ -255,13 +268,14 @@
                  var cypher= 'MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2';
              }
              else{
-                var cypher= 'MATCH (n)-[r]-(a) WHERE r.typeb="'+selectedVal+'" RETURN n,r,a'; 
+                var cypher= 'MATCH (n)-[r]-(a) WHERE r.type="'+selectedVal+'" RETURN n,r,a';
              }
                 viz.renderWithCypher(cypher);
              console.log(""+ selectedVal); 
          });
 
 </script>
+<<<<<<< HEAD
 
 
 <!-- Main Button Start -->
@@ -290,4 +304,6 @@ function enableGenerate() {
 </script>
 
 
+=======
+>>>>>>> 903274e0f60600dc076a489cd51c2c9156735282
 </html>
