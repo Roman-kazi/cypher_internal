@@ -183,6 +183,7 @@
         <h3 style="margin-top: 0px; margin-bottom: 10px;"><b>Apply Algorithms</b></h3>
         <button class='btn btn-primary' type="button" id="community">Grouping</button>
         <button class ='btn btn-primary' id="page_rank" type="button" >Page Rank</button>
+        <button class ='btn btn-primary' id="edge_width" type="button" >Edge Width</button>
 
         <hr>
 
@@ -215,11 +216,18 @@
 
 
 
-        //for community detection algorithm
+    //for community detection algorithm
     $("#community").click(function() {
       var cypher3= "CALL algo.beta.louvain('mobile_number', 'ANSWERED', { graph: 'huge', direction: 'BOTH', writeProperty: 'community'}) YIELD modularity, modularities";
       viz.renderWithCypher(cypher3);
       document.getElementById("community").disabled = true;
+    });
+
+    //for edge width algorithm
+    $("#edge_width").click(function() {
+      var cypher4= "MATCH (c:mobile_number)-[n]->() SET n.weight = n.duration % 5";
+      viz.renderWithCypher(cypher4);
+      document.getElementById("edge_width").disabled = true;
     });
 
     //for page ranker calculation
@@ -321,6 +329,7 @@
 function enableGenerate() {
   document.getElementById("page_rank").disabled = false;
   document.getElementById("community").disabled = false;
+  document.getElementById("edge_width").disabled = false;
 }
 </script>
 
