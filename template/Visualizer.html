@@ -190,7 +190,7 @@
 </body>
   <script>
       var filter="";
-      
+      var cypher="match (n)-[r]-(b) ";
     //fire manual query    
     $("#reload").click(function() {
         var cypher = $("#cypher").val();
@@ -210,15 +210,15 @@
 
     //for delete all nodes
     $("#delete").click(function() {
-      var cypher= 'match(n) detach delete(n)';
-      viz.renderWithCypher(cypher);
+      var cypher1= 'match(n) detach delete(n)';
+      viz.renderWithCypher(cypher1);
     })
 
     //search a mobile number
     $("#mob_search").click(function() {
         var no = $("#mob_no").val();
-        var cypher= 'match (n)-[r]-(b) where n.number="'+no+'" and '+ filter+' return n,r,b';
-            viz.renderWithCypher(cypher);
+        var cypher1= cypher+' where n.number="'+no+'" and '+ filter+' return n,r,b';
+            viz.renderWithCypher(cypher1);
         
         console.log("searching number "+no);
     });
@@ -239,23 +239,26 @@
       
       
          $("#execute_queries").click(function(){
+             var filter1="", filter2="", filter3="", filter4="";
              if($("#SMS").is(":checked")){
-                filter=" and r.type='SMS' ";
+                filter1=" and r.type='SMS' ";
                 console.log("SMS Filters is applied");
              }
              if($("#voice").is(":checked")){
-                filter=filter + " and r.type='voice' ";
+                filter2=filter + " and r.type='voice' ";
                 console.log("Voice Filters isapplied");
              }
              if($("#missed_call").is(":checked")){
-                filter=filter + " and r:DENIED ";
+                filter3=filter + " and r:DENIED ";
                 console.log("missed_call Filters isapplied");
              }
              if($("#answered_call").is(":checked")){
-                filter=filter + " and r:ANSWERED ";
+                filter4=filter + " and r:ANSWERED ";
                 console.log("answered_call Filters isapplied");
              }
-                
+            var cypher1= cypher +' where '+ filter1+filter2+filter3+filter4+' return n,r,b';
+            viz.renderWithCypher(cypher);
+        
          });
 /*                var selectedVal = $(this).find(':selected').val();
              if(selectedVal== 'default'){
