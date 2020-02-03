@@ -101,7 +101,7 @@
       <!-- Button Functions -->
       <h3 style="margin-top: 0px;"><b>Select File</b></h3>
         <button class='btn btn-success' id="test" onclick="enableGenerate()">Browse File to select</button>
-        <button class ='btn btn-success' id="btntest" type="button"  onclick="window.location.href = '/visualizer'" disabled>Generate Graph</button>
+        <button class ='btn btn-success' id="btntest" type="button" >Reload Graph</button>
         <hr style="margin-top: 5px; margin-bottom: 5px;">
 
         <h3 style="margin-top: 5px"><b>Filters</b></h3>
@@ -186,7 +186,7 @@
 
         <hr>
 
-        <input class="btn btn-success" type="submit" value="Submit" id="reload">
+<!--        <input class="btn btn-success" type="submit" value="Submit" id="reload">-->
         <input class="btn btn-success" type="submit" value="Stabilize" id="stabilize">
        <input class="btn btn-success" type="submit" value="Delete" id="delete">
 
@@ -237,6 +237,12 @@
     //for delete all nodes
     $("#delete").click(function() {
       var cypher1= 'match(n) detach delete(n)';
+      viz.renderWithCypher(cypher1);
+    });
+
+    //for reload viz
+    $("#btntest").click(function() {
+      var cypher1= "MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2";
       viz.renderWithCypher(cypher1);
     });
 
@@ -313,7 +319,6 @@
 
 <script>
 function enableGenerate() {
-  document.getElementById("btntest").disabled = false;
   document.getElementById("page_rank").disabled = false;
   document.getElementById("community").disabled = false;
 }
