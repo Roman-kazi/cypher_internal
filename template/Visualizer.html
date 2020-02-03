@@ -189,6 +189,8 @@
 
 </body>
   <script>
+      var filter="";
+      
     //fire manual query    
     $("#reload").click(function() {
         var cypher = $("#cypher").val();
@@ -199,7 +201,6 @@
             console.log("reload");
             viz.reload();
         }
-
     });
     
     //stablize the graph
@@ -216,7 +217,7 @@
     //search a mobile number
     $("#mob_search").click(function() {
         var no = $("#mob_no").val();
-        var cypher= 'match (n)-[r]-(b) where n.number="'+no+'" return n,r,b';
+        var cypher= 'match (n)-[r]-(b) where n.number="'+no+'" and '+ filter+' return n,r,b';
             viz.renderWithCypher(cypher);
         
         console.log("searching number "+no);
@@ -235,9 +236,28 @@
         }*/
         console.log("searching number between "+st+" and "+et);
     });
-
-         $("#calls").on("change", function(){
-                var selectedVal = $(this).find(':selected').val();
+      
+      
+         $("#execute_queries").click(function(){
+             if($("#SMS").is(":checked")){
+                filter=" and r.type='SMS' ";
+                console.log("SMS Filters is applied");
+             }
+             if($("#voice").is(":checked")){
+                filter=filter + " and r.type='voice' ";
+                console.log("Voice Filters isapplied");
+             }
+             if($("#missed_call").is(":checked")){
+                filter=filter + " and r:DENIED ";
+                console.log("missed_call Filters isapplied");
+             }
+             if($("#answered_call").is(":checked")){
+                filter=filter + " and r:ANSWERED ";
+                console.log("answered_call Filters isapplied");
+             }
+                
+         });
+/*                var selectedVal = $(this).find(':selected').val();
              if(selectedVal== 'default'){
                  var cypher= 'MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2';
              }
@@ -260,7 +280,7 @@
                 viz.renderWithCypher(cypher);
              console.log(""+ selectedVal); 
          });
-
+*/
 </script>
 
 
