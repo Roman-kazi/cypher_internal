@@ -223,44 +223,28 @@
         console.log("searching number "+no);
     });
     
-    //search a number in time period 
+     //search a number in time period 
     $("#time_search").click(function() {
         var st = $("#start_time").val();
         var et = $("#end_time").val();
         
-        /*if (cypher.length > 3) {
+        if (Date.parse(st) && Date.parse(et)) {
+            var cypher='match (n)-[r]-(f) where r.start_time> datetime("'+st+'") and r.end_time> datetime("'+et+'") return n,r,f;';
             viz.renderWithCypher(cypher);
-        } else {
-            console.log("reload");
-            viz.reload();
-        }*/
+        }
+        else if (Date.parse(st)){
+            var cypher='match (n)-[r]-(f) where r.start_time> datetime("'+st+'") return n,r,f;';
+            viz.renderWithCypher(cypher);
+        }
+        else if(Date.parse(et)){
+            var cypher='match (n)-[r]-(f) where r.end_time> datetime("'+et+'") return n,r,f;';
+            viz.renderWithCypher(cypher);        
+        }
         console.log("searching number between "+st+" and "+et);
     });
-      
-      
-         $("#execute_queries").click(function(){
-             var filter1="", filter2="", filter3="", filter4="";
-             if($("#SMS").is(":checked")){
-                filter1=" r.type='SMS' ";
-                console.log("SMS Filters is applied");
-             }
-             if($("#voice").is(":checked")){
-                filter2=filter + " r.type='voice' ";
-                console.log("Voice Filters isapplied");
-             }
-             if($("#missed_call").is(":checked")){
-                filter3=filter + " r:DENIED ";
-                console.log("missed_call Filters isapplied");
-             }
-             if($("#answered_call").is(":checked")){
-                filter4=filter + " r:ANSWERED ";
-                console.log("answered_call Filters isapplied");
-             }
-            var cypher1= cypher +' where '+ filter1+' and '+filter2+' and '+filter3+' and '+filter4+' return n,r,b';
-            viz.renderWithCypher(cypher);
-        
-         });
-/*                var selectedVal = $(this).find(':selected').val();
+
+         $("#calls").on("change", function(){
+                var selectedVal = $(this).find(':selected').val();
              if(selectedVal== 'default'){
                  var cypher= 'MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2';
              }
@@ -278,12 +262,12 @@
                  var cypher= 'MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2';
              }
              else{
-                var cypher= 'MATCH (n)-[r]-(a) WHERE r.type="'+selectedVal+'" RETURN n,r,a';
+                var cypher= 'MATCH (n)-[r]-(a) WHERE r.typeb="'+selectedVal+'" RETURN n,r,a'; 
              }
                 viz.renderWithCypher(cypher);
              console.log(""+ selectedVal); 
          });
-*/
+
 </script>
 
 
