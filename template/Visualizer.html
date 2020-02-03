@@ -241,22 +241,22 @@
          $("#execute_queries").click(function(){
              var filter1="", filter2="", filter3="", filter4="";
              if($("#SMS").is(":checked")){
-                filter1=" and r.type='SMS' ";
+                filter1=" r.type='SMS' ";
                 console.log("SMS Filters is applied");
              }
              if($("#voice").is(":checked")){
-                filter2=filter + " and r.type='voice' ";
+                filter2=filter + " r.type='voice' ";
                 console.log("Voice Filters isapplied");
              }
              if($("#missed_call").is(":checked")){
-                filter3=filter + " and r:DENIED ";
+                filter3=filter + " r:DENIED ";
                 console.log("missed_call Filters isapplied");
              }
              if($("#answered_call").is(":checked")){
-                filter4=filter + " and r:ANSWERED ";
+                filter4=filter + " r:ANSWERED ";
                 console.log("answered_call Filters isapplied");
              }
-            var cypher1= cypher +' where '+ filter1+filter2+filter3+filter4+' return n,r,b';
+            var cypher1= cypher +' where '+ filter1+' and '+filter2+' and '+filter3+' and '+filter4+' return n,r,b';
             viz.renderWithCypher(cypher);
         
          });
