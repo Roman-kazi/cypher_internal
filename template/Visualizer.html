@@ -206,13 +206,13 @@
     //stablize the graph
     $("#stabilize").click(function() {
         viz.stabilize();
-    })
+    });
 
     //for delete all nodes
     $("#delete").click(function() {
       var cypher1= 'match(n) detach delete(n)';
       viz.renderWithCypher(cypher1);
-    })
+    });
 
     //search a mobile number
     $("#mob_search").click(function() {
@@ -243,30 +243,24 @@
         console.log("searching number between "+st+" and "+et);
     });
 
-         $("#calls").on("change", function(){
-                var selectedVal = $(this).find(':selected').val();
-             if(selectedVal== 'default'){
-                 var cypher= 'MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2';
-             }
-             else{
-                var cypher= 'MATCH p=()-[r:'+selectedVal+']->() RETURN p'; 
-             }
-                viz.renderWithCypher(cypher);
-             console.log(""+ selectedVal); 
-             
-         });
+      //filters
+        $("#SMS").click(function() {
+                var cypher= 'MATCH p=()-[r:"SMS"]->() RETURN p'; 
+          viz.renderWithCypher(cypher1);
+        });
+      $("#voice").click(function() {
+                var cypher= 'MATCH p=()-[r:"VOICE"]->() RETURN p'; 
+          viz.renderWithCypher(cypher);
+        });
+      $("#missed_call").click(function() {
+                var cypher= 'MATCH (n)-[r]-(a) WHERE r.typeb="ANSWERED" RETURN n,r,a'; 
+          viz.renderWithCypher(cypher);
+        });
+      $("#answered_call").click(function() {
+                var cypher= 'MATCH (n)-[r]-(a) WHERE r.typeb="DENIED" RETURN n,r,a'; 
+          viz.renderWithCypher(cypher);
+        });
         
-         $("#type").on("change", function(){
-                var selectedVal = $(this).find(':selected').val();
-             if(selectedVal== 'default'){
-                 var cypher= 'MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2';
-             }
-             else{
-                var cypher= 'MATCH (n)-[r]-(a) WHERE r.typeb="'+selectedVal+'" RETURN n,r,a'; 
-             }
-                viz.renderWithCypher(cypher);
-             console.log(""+ selectedVal); 
-         });
 
 </script>
 
