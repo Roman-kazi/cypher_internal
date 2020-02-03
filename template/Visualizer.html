@@ -162,11 +162,11 @@
         <tbody>
           <tr>
             <td>Start Time</td>
-            <td><input type="datetime-local" id="start_time" min="1980-01-01T00:00" max="2020-01-14T00:00"></td>
+            <td><input type="datetime" id="start_time" min="1980-01-01T00:00" max="2020-01-14T00:00"></td>
           </tr>
           <tr>
             <td>End Time</td>
-            <td><input type="datetime-local" id="end_time" min="1980-01-01T00:00" max="2018-01-14T00:00"></td>
+            <td><input type="datetime" id="end_time" min="1980-01-01T00:00" max="2018-01-14T00:00"></td>
           </tr>
           <tr>
             <td><button class="btn btn-success" id="time_search">Search</button></td>
@@ -175,9 +175,17 @@
       </table>
 
 
-            <h3 style="margin-top: 0px; margin-bottom: 5px;"><b>Manual Cypher query</b></h3>
-            <textarea rows="1" cols="50" id="cypher"></textarea><br>
-            <br>
+<!--            <h3 style="margin-top: 0px; margin-bottom: 5px;"><b>Manual Cypher query</b></h3>-->
+<!--            <textarea rows="1" cols="50" id="cypher"></textarea><br>-->
+<!--            <br>-->
+<!--        -->
+
+        <h3 style="margin-top: 0px; margin-bottom: 10px;"><b>Apply Algorithms</b></h3>
+        <button class='btn btn-primary' type="button" id="community">Grouping</button>
+        <button class ='btn btn-primary' id="page_rank" type="button" >Page Rank</button>
+
+        <hr>
+
         <input class="btn btn-success" type="submit" value="Submit" id="reload">
         <input class="btn btn-success" type="submit" value="Stabilize" id="stabilize">
        <input class="btn btn-success" type="submit" value="Delete" id="delete">
@@ -201,6 +209,24 @@
             console.log("reload");
             viz.reload();
         }
+    });
+
+
+
+
+
+        //for community detection algorithm
+    $("#community").click(function() {
+      var cypher3= "CALL algo.beta.louvain('mobile_number', 'ANSWERED', { graph: 'huge', direction: 'BOTH', writeProperty: 'community'}) YIELD modularity, modularities";
+      viz.renderWithCypher(cypher3);
+      document.getElementById("community").disabled = true;
+    });
+
+    //for page ranker calculation
+    $("#page_rank").click(function() {
+      var cypher4= "CALL algo.pageRank('mobile_number', 'ANSWERED', {iterations:20, dampingFactor:0.85, write: true,writeProperty:'pagerank'}) YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty";
+      viz.renderWithCypher(cypher4);
+      document.getElementById("page_rank").disabled = true;
     });
     
     //stablize the graph
@@ -245,19 +271,19 @@
 
       //filters
         $("#SMS").click(function() {
-                var cypher= 'MATCH p=()-[r:"SMS"]->() RETURN p'; 
-          viz.renderWithCypher(cypher1);
+                var cypher= 'MATCH (n)-[r]-(a) WHERE r.type="SMS" RETURN n,r,a';
+          viz.renderWithCypher(cypher);
         });
       $("#voice").click(function() {
-                var cypher= 'MATCH p=()-[r:"VOICE"]->() RETURN p'; 
+                var cypher= 'MATCH (n)-[r]-(a) WHERE r.type="VOICE" RETURN n,r,a';
           viz.renderWithCypher(cypher);
         });
       $("#missed_call").click(function() {
-                var cypher= 'MATCH (n)-[r]-(a) WHERE r.typeb="ANSWERED" RETURN n,r,a'; 
+                var cypher= 'MATCH p=()-[r:DENIED]->() RETURN p';
           viz.renderWithCypher(cypher);
         });
       $("#answered_call").click(function() {
-                var cypher= 'MATCH (n)-[r]-(a) WHERE r.typeb="DENIED" RETURN n,r,a'; 
+                var cypher= 'MATCH p=()-[r:ANSWERED]->() RETURN p';
           viz.renderWithCypher(cypher);
         });
         
@@ -288,6 +314,8 @@
 <script>
 function enableGenerate() {
   document.getElementById("btntest").disabled = false;
+  document.getElementById("page_rank").disabled = false;
+  document.getElementById("community").disabled = false;
 }
 </script>
 
