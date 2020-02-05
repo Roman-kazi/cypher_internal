@@ -115,7 +115,7 @@
     <label class="form-check-label" for="missed_call">Missed</label>
         <input type="checkbox" class="form-check-input" id="answered_call">
     <label class="form-check-label" for="answered_call">Answered</label>
-    <button class="btn btn-success" id="execute_queries" >Apply Filters</button>
+<!--    <button class="btn btn-success" id="execute_queries" >Apply Filters</button>-->
     
 </div>
 
@@ -221,6 +221,10 @@
       var cypher3= "CALL algo.beta.louvain('mobile_number', 'ANSWERED', { graph: 'huge', direction: 'BOTH', writeProperty: 'community'}) YIELD modularity, modularities";
       viz.renderWithCypher(cypher3);
       document.getElementById("community").disabled = true;
+      setTimeout(function(){
+       var cypher1= "MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2";
+      viz.renderWithCypher(cypher1);
+      }, 500);
     });
 
     //for edge width algorithm
@@ -228,6 +232,10 @@
       var cypher4= "MATCH (c:mobile_number)-[n]->() SET n.weight = n.duration % 5";
       viz.renderWithCypher(cypher4);
       document.getElementById("edge_width").disabled = true;
+      setTimeout(function(){
+       var cypher1= "MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2";
+      viz.renderWithCypher(cypher1);
+      }, 500);
     });
 
     //for page ranker calculation
@@ -235,6 +243,10 @@
       var cypher4= "CALL algo.pageRank('mobile_number', 'ANSWERED', {iterations:20, dampingFactor:0.85, write: true,writeProperty:'pagerank'}) YIELD nodes, iterations, loadMillis, computeMillis, writeMillis, dampingFactor, write, writeProperty";
       viz.renderWithCypher(cypher4);
       document.getElementById("page_rank").disabled = true;
+        setTimeout(function(){
+       var cypher1= "MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2";
+      viz.renderWithCypher(cypher1);
+      }, 500);
     });
     
     //stablize the graph
@@ -258,8 +270,7 @@
     $("#mob_search").click(function() {
         var no = $("#mob_no").val();
         var cypher1= cypher+' where n.number="'+no+'" and '+ filter+' return n,r,b';
-            viz.renderWithCypher(cypher1);
-        
+        viz.renderWithCypher(cypher1);
         console.log("searching number "+no);
     });
     
