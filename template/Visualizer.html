@@ -224,7 +224,7 @@
       setTimeout(function(){
        var cypher1= "MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2";
       viz.renderWithCypher(cypher1);
-      }, 500);
+      }, 1000);
     });
 
     //for edge width algorithm
@@ -235,7 +235,7 @@
       setTimeout(function(){
        var cypher1= "MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2";
       viz.renderWithCypher(cypher1);
-      }, 500);
+      }, 1000);
     });
 
     //for page ranker calculation
@@ -246,7 +246,7 @@
         setTimeout(function(){
        var cypher1= "MATCH (n),(n1)-[r]->(n2) RETURN r,n,n1,n2";
       viz.renderWithCypher(cypher1);
-      }, 500);
+      }, 1000);
     });
     
     //stablize the graph
@@ -269,7 +269,7 @@
     //search a mobile number
     $("#mob_search").click(function() {
         var no = $("#mob_no").val();
-        var cypher1= cypher+' where n.number="'+no+'" and '+ filter+' return n,r,b';
+        var cypher1= cypher+' where n.number="'+no+'" return n,r,b';
         viz.renderWithCypher(cypher1);
         console.log("searching number "+no);
     });
