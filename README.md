@@ -10,7 +10,7 @@ A `Flask` Web app coupled with `Neo4j` (Graph Database), to visualize call data 
 # To Run
 * Clone the repository
 * Start Neo4j Server
-* Run the flask server by executing (`$ python3 flask_test.py`)ate 
+* Run the flask server by executing (`$ python3 flask_test.py`)
 * Navigate to localhost:5001
 * Now you can load csv data for visualization (Example data is in `BasicHTML/`)
 
